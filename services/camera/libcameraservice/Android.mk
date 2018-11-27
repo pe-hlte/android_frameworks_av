@@ -95,7 +95,11 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := \
 
 LOCAL_CFLAGS += -Wall -Wextra -Werror
 
-LOCAL_MODULE:= libcameraservice
+ifneq ($(TARGET_FACE_UNLOCK_CAMERA_ID),)
+    LOCAL_CFLAGS += -DFACE_UNLOCK_CAMERA_ID=$(TARGET_FACE_UNLOCK_CAMERA_ID)
+endif
+
+LOCAL_MODULE := libcameraservice
 
 include $(BUILD_SHARED_LIBRARY)
 
